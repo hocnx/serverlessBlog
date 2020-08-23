@@ -13,8 +13,6 @@ async function checkUser(updateUser) {
   const isAuthorized =
     payload['cognito:groups'] &&
   payload['cognito:groups'].includes('Admin')
-  console.log('payload', payload)
-  console.log('isAuthorized', isAuthorized)
   updateUser({
     username: payload['cognito:username'],
     userID: payload['cognito:username'],

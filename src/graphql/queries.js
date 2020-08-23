@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const getPost = /* GraphQL */ `
-  query GetPost($id: ID!, $createdAt: String!) {
-    getPost(id: $id, createdAt: $createdAt) {
+  query GetPost($id: ID!) {
+    getPost(id: $id) {
       id
       type
       title
@@ -29,20 +29,44 @@ export const getPost = /* GraphQL */ `
 `;
 export const listPosts = /* GraphQL */ `
   query ListPosts(
-    $id: ID
-    $createdAt: ModelStringKeyConditionInput
     $filter: ModelPostFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listPosts(
-      id: $id
+    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        type
+        title
+        content
+        username
+        userID
+        createdAt
+        updatedAt
+        comments {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const listSortedPosts = /* GraphQL */ `
+  query ListSortedPosts(
+    $type: String
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelPostFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSortedPosts(
+      type: $type
       createdAt: $createdAt
+      sortDirection: $sortDirection
       filter: $filter
       limit: $limit
       nextToken: $nextToken
-      sortDirection: $sortDirection
     ) {
       items {
         id
@@ -54,9 +78,6 @@ export const listPosts = /* GraphQL */ `
         createdAt
         updatedAt
         comments {
-          items {
-            id
-          }
           nextToken
         }
       }
@@ -64,47 +85,8 @@ export const listPosts = /* GraphQL */ `
     }
   }
 `;
-export const getPostByID = /* GraphQL */ `
-  query ListPosts(
-    $id: ID
-    $limit: Int
-    $nextToken: String
-    $sortDirection: ModelSortDirection
-  ) {
-    listPosts(
-      id: $id
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
-      items {
-        id
-        type
-        title
-        content
-        username
-        userID
-        createdAt
-        updatedAt
-        comments {
-          items {
-            id
-            postID
-            content
-            username
-            userID
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-      }
-      nextToken
-    }
-  }
-`;
-export const postsByUserId = /* GraphQL */ `
-  query PostsByUserId(
+export const postsByUser = /* GraphQL */ `
+  query PostsByUser(
     $userID: String
     $createdAt: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
@@ -112,7 +94,7 @@ export const postsByUserId = /* GraphQL */ `
     $limit: Int
     $nextToken: String
   ) {
-    postsByUserID(
+    postsByUser(
       userID: $userID
       createdAt: $createdAt
       sortDirection: $sortDirection

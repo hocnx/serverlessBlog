@@ -1,15 +1,15 @@
 import React,{useState, useEffect} from 'react'
 import { useParams, Link} from 'react-router-dom'
 import {API} from 'aws-amplify'
-import {getPostByID as GetPostByID} from './graphql/queries'
+import {getPost as GetPost} from './graphql/queries'
 import  ReactMarkdown from 'react-markdown'
 import NewComment from './NewComment'
 import ListComments from './ListComments'
-import {Comment} from 'antd'
+import {Comment, Row, Col} from 'antd'
 import Avatar from './Avatar'
 import getPostMdFile from './getPostMdFile'
 import checkUser from './checkUser'
-import { Row, Col } from 'antd';
+import { EditOutlined} from '@ant-design/icons';
 
 
 function Post () {
@@ -27,14 +27,13 @@ function Post () {
         try {
             console.log('id:', id)
             const postData = await API.graphql({
-                query: GetPostByID,
+                query: GetPost,
                 variables: {id: id},
                 authMode: 'API_KEY'
             })
-            if(postData.data.listPosts.length === 0){
-                console.log('404 Not found!')
-            }
-            console.log('Post content:', postData.data.listPosts.items[0])
+            console.log('postData', postData)
+
+            console.log('Post content:', postData.data.getPost)
             const mdFileUrl = getPostMdFile(id)
             console.log('signedUrl:', mdFileUrl)
             fetch(mdFileUrl)
@@ -43,7 +42,7 @@ function Post () {
                     else return Promise.reject("Didn't fetch text correctly");
                 })
                 .then((text) => {
-                    updatePost({...postData.data.listPosts.items[0], 'content':text})
+                    updatePost({...postData.data.getPost, 'content':text})
                 })
                 .catch((error) => console.error(error));
 
@@ -53,8 +52,16 @@ function Post () {
     }
 
     return (
-    <>
-        <h1>{post.title}</h1>
+    <Row justify="center">
+    <Col span={20}>
+        <h1>{post.title}   
+        { user && user.userID === post.userID &&
+            (<Link to={'/'+ id +'/edit'}>
+                <EditOutlined style={{fontSize: '24px', color: '#08c'}}/>
+            </Link>
+            )
+        }
+        </h1> 
         <ReactMarkdown source={post.content} />
         { user ? (<Comment
             avatar={
@@ -72,7 +79,8 @@ function Post () {
         }
 
         {post.comments && (<ListComments comments={post.comments.items}/>)}
-    </>
+    </Col>
+    </Row>
     )
 }
 export default Post

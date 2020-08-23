@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react'
 
 import { List } from 'antd';
 import Avatar from './Avatar'
-import { MessageOutlined, } from '@ant-design/icons';
+import { MessageOutlined } from '@ant-design/icons';
 import IconText from './IconText'
 
-import { postsByUserId as PostsByUserId } from './graphql/queries'
+import { postsByUser as PostsByUser } from './graphql/queries'
 import { API } from 'aws-amplify'
  
 import { Row, Col, Divider } from 'antd';
@@ -34,12 +34,12 @@ function Home() {
     const [user, updateUser] = useState({})
     async function fetchPosts(){
         const posts = await API.graphql({
-            query: PostsByUserId,
+            query: PostsByUser,
             variables: {userID: userID},
             authMode:'API_KEY'
         })
         console.log(posts)
-        setListData(posts.data.postsByUserID.items)
+        setListData(posts.data.postsByUser.items)
     }
 
     useEffect(() => {
@@ -64,7 +64,7 @@ function Home() {
             <List.Item.Meta
             avatar={<Avatar userID={item.userID} />}
             title={<Link to={'/'+item.id}>{item.title}</Link>}
-            description= {(<><Link to='/blog/item.userID'>{item.username}</Link>  <span>{'   ' +  moment(item.createdAt).format('YYYY-MM-DD HH:mm')}</span></>)}
+            description= {(<><Link to={'/blog/'+ item.userID}>{item.username}</Link>  <span>{'   ' +  moment(item.createdAt).format('YYYY-MM-DD HH:mm')}</span></>)}
             />
             {item.content}
         </List.Item>

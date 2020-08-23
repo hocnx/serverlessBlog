@@ -34,6 +34,7 @@ const Router = () => {
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/profile' component={Profile}/>
                     <Route exact path='/new_post' component={NewPost}/>
+                    <Route exact path='/:postID/edit' component={NewPost}/>
                     <Route exact path='/admin' component={Admin}/>
                     <Route exact path='/:id' component={Post}/>
                     <Route exact path='/blog/:userID' component={Blog}/>

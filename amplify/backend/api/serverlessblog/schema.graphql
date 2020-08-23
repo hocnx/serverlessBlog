@@ -1,11 +1,10 @@
 type Post @model 
 @auth(rules: [
   { allow: public, operations: [read] },
-  { allow: private, operations: [create, read] },
-  { allow: owner, operations: [update, delete] }
+  { allow: private, operations: [create, update, read, delete] }
   ])
-@key(fields: ["id", "createdAt"]) 
-@key(name: "byUser", fields: ["userID", "createdAt"], queryField:"postsByUserID")
+@key(name: "sortByTime", fields: ["type", "createdAt"], queryField: "listSortedPosts") 
+@key(name: "byUser", fields: ["userID", "createdAt"], queryField: "postsByUser") 
 {
   id: ID!
   type: String!
@@ -20,8 +19,7 @@ type Post @model
 type Comment @model
 @auth(rules: [
   { allow: public, operations: [read] },
-  { allow: private, operations: [create, read] },
-  { allow: owner, operations: [update, delete] }
+  { allow: private, operations: [create, read, update, delete] }
   ])
 @key(name: "byPost", fields: ["postID", "createdAt"]) {
   id: ID!
@@ -29,5 +27,5 @@ type Comment @model
   content: String!
   username: String!
   userID: String!
-  createdAt: String
+  createdAt: String!
 }

@@ -6,7 +6,7 @@ import Avatar from './Avatar'
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 import IconText from './IconText'
 
-import { listPosts as ListPosts } from './graphql/queries'
+import { listSortedPosts as ListSortedPosts } from './graphql/queries'
 import { API } from 'aws-amplify'
  
 import { Row, Col, Divider } from 'antd';
@@ -36,11 +36,12 @@ function Home() {
 
     async function fetchPosts(){
         const posts = await API.graphql({
-            query: ListPosts,
+            query: ListSortedPosts,
+            variables: {type:'post'} ,
             authMode:'API_KEY'
         })
         console.log(posts)
-        setListData(posts.data.listPosts.items)
+        setListData(posts.data.listSortedPosts.items)
     }
 
     useEffect(() => {
@@ -63,7 +64,7 @@ function Home() {
             <List.Item.Meta
             avatar={<Avatar userID={item.userID} />}
             title={<Link to={'/'+item.id}>{item.title}</Link>}
-            description= {(<><Link to='/blog/item.userID'>{item.username}</Link>  <span>{'   ' +  moment(item.createdAt).format('YYYY-MM-DD HH:mm')}</span></>)}
+            description= {(<><Link to={'/blog/'+ item.userID}>{item.username}</Link>  <span>{'   ' +  moment(item.createdAt).format('YYYY-MM-DD HH:mm')}</span></>)}
             />
             {item.content}
         </List.Item>
