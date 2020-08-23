@@ -103,6 +103,40 @@ export const getPostByID = /* GraphQL */ `
     }
   }
 `;
+export const postsByUserId = /* GraphQL */ `
+  query PostsByUserId(
+    $userID: String
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelPostFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    postsByUserID(
+      userID: $userID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        type
+        title
+        content
+        username
+        userID
+        createdAt
+        updatedAt
+        comments {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
 export const getComment = /* GraphQL */ `
   query GetComment($id: ID!) {
     getComment(id: $id) {

@@ -29,7 +29,7 @@ const Nav = current => {
 
             { user && (
                 <Menu.Item>
-                    <Link to='/blog/:id'>
+                    <Link to={'/blog/' + user.userID}>
                         <AimOutlined /> My Blog
                     </Link>
                 </Menu.Item>

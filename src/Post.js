@@ -5,7 +5,8 @@ import {getPostByID as GetPostByID} from './graphql/queries'
 import  ReactMarkdown from 'react-markdown'
 import NewComment from './NewComment'
 import ListComments from './ListComments'
-import {Comment, Avatar} from 'antd'
+import {Comment} from 'antd'
+import Avatar from './Avatar'
 import getPostMdFile from './getPostMdFile'
 import checkUser from './checkUser'
 import { Row, Col } from 'antd';
@@ -57,10 +58,7 @@ function Post () {
         <ReactMarkdown source={post.content} />
         { user ? (<Comment
             avatar={
-                <Avatar
-                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                alt="Han Solo"
-                />
+                <Avatar userID={user.userID} />
             }
             content={
                 <NewComment postID={id} reloadPage={() => fetchPost(id)} user={user}/>

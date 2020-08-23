@@ -36,7 +36,7 @@ const Router = () => {
                     <Route exact path='/new_post' component={NewPost}/>
                     <Route exact path='/admin' component={Admin}/>
                     <Route exact path='/:id' component={Post}/>
-                    <Route exact path='/blog/:user_id' component={Blog}/>
+                    <Route exact path='/blog/:userID' component={Blog}/>
 
                 </Switch>
             </Container>

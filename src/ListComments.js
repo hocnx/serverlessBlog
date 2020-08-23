@@ -1,5 +1,6 @@
 import React from 'react'
-import { Comment, Avatar, Tooltip, Form, Button, List, Input } from 'antd';
+import { Comment, Tooltip, Form, Button, List, Input } from 'antd';
+import Avatar from  './Avatar'
 import moment from 'moment';
 import getProfileImage from './getProfileImage'
 
@@ -14,10 +15,7 @@ function ListComments({comments}) {
             <Comment
             author={item.username}
             avatar={
-                    <Avatar
-                    src={getProfileImage(item.userID)}
-                    alt={item.username}
-                    />
+                    <Avatar userID={item.userID} />
                 }
             content={item.content}
             datetime={

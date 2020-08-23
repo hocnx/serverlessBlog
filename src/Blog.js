@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react'
 
-import { List, Avatar } from 'antd';
+import { List } from 'antd';
+import Avatar from './Avatar'
 import { MessageOutlined, } from '@ant-design/icons';
 import IconText from './IconText'
 
-import { listPosts as ListPosts } from './graphql/queries'
+import { postsByUserId as PostsByUserId } from './graphql/queries'
 import { API } from 'aws-amplify'
  
 import { Row, Col, Divider } from 'antd';
-import { Link } from 'react-router-dom';
-import getProfileImage from './getProfileImage'
+import { Link, useParams } from 'react-router-dom';
 import moment from 'moment'
 import checkUser from './checkUser'
 
@@ -29,15 +29,17 @@ const data = [
   ];
 
 function Home() {
+    const {userID} = useParams()
     const [listData, setListData] = useState([])
     const [user, updateUser] = useState({})
     async function fetchPosts(){
         const posts = await API.graphql({
-            query: ListPosts,
+            query: PostsByUserId,
+            variables: {userID: userID},
             authMode:'API_KEY'
         })
         console.log(posts)
-        setListData(posts.data.listPosts.items)
+        setListData(posts.data.postsByUserID.items)
     }
 
     useEffect(() => {
@@ -60,7 +62,7 @@ function Home() {
             />
             }>
             <List.Item.Meta
-            avatar={<Avatar src={getProfileImage(item.userID)} />}
+            avatar={<Avatar userID={item.userID} />}
             title={<Link to={'/'+item.id}>{item.title}</Link>}
             description= {(<><Link to='/blog/item.userID'>{item.username}</Link>  <span>{'   ' +  moment(item.createdAt).format('YYYY-MM-DD HH:mm')}</span></>)}
             />
@@ -94,7 +96,7 @@ function Home() {
                 renderItem={item => (
                     <List.Item>
                     <List.Item.Meta
-                        avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                        avatar={<Avatar userID='hocnx' />}
                         title={<a href="https://ant.design">{item.title}</a>}
                         description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                     /> 
