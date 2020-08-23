@@ -1,0 +1,20 @@
+{
+    "test": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-serverlessblog-test-170439-authRole",
+            "UnauthRoleArn": "arn:aws:iam::688466737956:role/amplify-serverlessblog-test-170439-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::688466737956:role/amplify-serverlessblog-test-170439-authRole",
+            "Region": "ap-northeast-1",
+            "DeploymentBucketName": "amplify-serverlessblog-test-170439-deployment",
+            "UnauthRoleName": "amplify-serverlessblog-test-170439-unauthRole",
+            "StackName": "amplify-serverlessblog-test-170439",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:688466737956:stack/amplify-serverlessblog-test-170439/f91a3e10-decd-11ea-ad1a-0af0ae9d5064",
+            "AmplifyAppId": "d8fk1qtun7k56"
+        },
+        "categories": {
+            "auth": {
+                "serverlessblogfc81b11e": {}
+            }
+        }
+    }
+}

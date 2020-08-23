@@ -1,0 +1,33 @@
+type Post @model 
+@auth(rules: [
+  { allow: public, operations: [read] },
+  { allow: private, operations: [create, read] },
+  { allow: owner, operations: [update, delete] }
+  ])
+@key(fields: ["id", "createdAt"]) 
+@key(name: "byUser", fields: ["userID", "createdAt"], queryField:"postsByUserID")
+{
+  id: ID!
+  type: String!
+  title: String!
+  content: String!
+  username: String!
+  userID: String!
+  createdAt: String!
+  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+}
+
+type Comment @model
+@auth(rules: [
+  { allow: public, operations: [read] },
+  { allow: private, operations: [create, read] },
+  { allow: owner, operations: [update, delete] }
+  ])
+@key(name: "byPost", fields: ["postID", "createdAt"]) {
+  id: ID!
+  postID: ID!
+  content: String!
+  username: String!
+  userID: String!
+  createdAt: String
+}
