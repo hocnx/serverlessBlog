@@ -5,7 +5,7 @@ import {getPost as GetPost} from './graphql/queries'
 import  ReactMarkdown from 'react-markdown'
 import NewComment from './NewComment'
 import ListComments from './ListComments'
-import {Comment, Row, Col} from 'antd'
+import {Comment, Row, Col, Space} from 'antd'
 import Avatar from './Avatar'
 import getPostMdFile from './getPostMdFile'
 import checkUser from './checkUser'
@@ -54,14 +54,16 @@ function Post () {
     return (
     <Row justify="center">
     <Col span={20}>
-        <h1>{post.title}   
+    <Space>
+        <h1>{post.title}</h1> 
         { user && user.userID === post.userID &&
             (<Link to={'/'+ id +'/edit'}>
                 <EditOutlined style={{fontSize: '24px', color: '#08c'}}/>
             </Link>
             )
         }
-        </h1> 
+        
+    </Space>
         <ReactMarkdown source={post.content} />
         { user ? (<Comment
             avatar={

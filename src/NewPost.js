@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Auth} from 'aws-amplify'
-import { Modal, Input, Button, Row, Col } from 'antd';
+import { Modal, Input, Button, Row, Col, Space } from 'antd';
 import {ExclamationCircleOutlined} from '@ant-design/icons'
 
 import SimpleMDE from 'react-simplemde-editor';
@@ -179,16 +179,20 @@ function NewPost(props) {
         <Col span={20}>
             <Input placeholder="Title" bordered={false} style={{fontSize: '3em'}} name='title' value={postData.title} onChange={e => handleTextChange('title', e.target.value)}/>
             <SimpleMDE onChange={e => handleTextChange('content', e)} name='content' value={postData.content}/>
-            <div>
-            <Button onClick={cancelPost}>Cancel</Button>
-            {
-                postID ? (
-                    <Button type="primary" onClick={updatePost}>Update</Button>
-                ) : (
-                    <Button type="primary" onClick={createPost}>Create</Button>
-                )
-            }
-            </div>
+            <Row justify="center">
+            <Col span={4}>
+            <Space>
+                <Button onClick={cancelPost}>Cancel</Button>
+                {
+                    postID ? (
+                        <Button type="primary" onClick={updatePost}>Update</Button>
+                    ) : (
+                        <Button type="primary" onClick={createPost}>Create</Button>
+                    )
+                } 
+            </Space>
+            </Col>
+            </Row>
         </Col>
         </Row>
     )

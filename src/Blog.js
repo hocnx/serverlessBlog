@@ -35,7 +35,7 @@ function Home() {
     async function fetchPosts(){
         const posts = await API.graphql({
             query: PostsByUser,
-            variables: {userID: userID},
+            variables: {userID: userID,  sortDirection: 'DESC'},
             authMode:'API_KEY'
         })
         console.log(posts)

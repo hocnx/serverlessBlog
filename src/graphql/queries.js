@@ -78,6 +78,9 @@ export const listSortedPosts = /* GraphQL */ `
         createdAt
         updatedAt
         comments {
+          items {
+            id
+          }
           nextToken
         }
       }
@@ -112,6 +115,9 @@ export const postsByUser = /* GraphQL */ `
         createdAt
         updatedAt
         comments {
+          items {
+            id
+          }
           nextToken
         }
       }
