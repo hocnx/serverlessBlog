@@ -9,6 +9,7 @@ import {createPost as CreatePost, updatePost as UpdatePost} from './graphql/muta
 import { v4 as uuid } from 'uuid'
 import { API, Storage} from 'aws-amplify'
 import { useParams } from 'react-router-dom'
+import getImageUrl from './getImageUrl'
 
 
 import {getPost as GetPost} from './graphql/queries'
@@ -174,11 +175,31 @@ function NewPost(props) {
           });
     }
 
+    async function imageUploadFunction (file, onSuccess, onError)  {
+        console.log('begin upload image: ', file)
+        const extension = file.name.split('.')[1]
+        const fileName  = uuid()
+        try {
+            // upload image file to S3
+            await Storage.put('images/'+fileName + '.' + extension,
+            file,
+            {
+                acl: 'public-read',
+            })
+            console.log('upload s3 successfully!')
+            onSuccess(getImageUrl(fileName, extension))
+        } catch (e) {
+            console.log('error: ', e)
+            onError(e)
+        }    
+    }
+
     return (
         <Row justify="center">
         <Col span={20}>
             <Input placeholder="Title" bordered={false} style={{fontSize: '3em'}} name='title' value={postData.title} onChange={e => handleTextChange('title', e.target.value)}/>
-            <SimpleMDE onChange={e => handleTextChange('content', e)} name='content' value={postData.content}/>
+            <SimpleMDE options={{uploadImage:true ,imageAccept:['image/png', 'image/jpeg'],  imageUploadFunction: imageUploadFunction}} 
+                onChange={e => handleTextChange('content', e)} name='content' value={postData.content}/>
             <Row justify="center">
             <Col span={4}>
             <Space>
