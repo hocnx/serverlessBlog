@@ -7,7 +7,8 @@ export const getPost = /* GraphQL */ `
       id
       type
       title
-      content
+      imageURL
+      description
       username
       userID
       createdAt
@@ -38,7 +39,8 @@ export const listPosts = /* GraphQL */ `
         id
         type
         title
-        content
+        imageURL
+        description
         username
         userID
         createdAt
@@ -72,15 +74,13 @@ export const listSortedPosts = /* GraphQL */ `
         id
         type
         title
-        content
+        imageURL
+        description
         username
         userID
         createdAt
         updatedAt
         comments {
-          items {
-            id
-          }
           nextToken
         }
       }
@@ -109,15 +109,13 @@ export const postsByUser = /* GraphQL */ `
         id
         type
         title
-        content
+        imageURL
+        description
         username
         userID
         createdAt
         updatedAt
         comments {
-          items {
-            id
-          }
           nextToken
         }
       }

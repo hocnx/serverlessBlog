@@ -18,7 +18,8 @@ import getPostMdFile from './getPostMdFile'
 
 
 function NewPost(props) {
-    const initialValue = {title:'', content:''}
+    const { TextArea } = Input;
+    const initialValue = {title:'', content:'', description:'', imageURL:''}
     const {postID} = useParams()
     const [postData, updatePostData] = useState(initialValue)
 
@@ -74,8 +75,8 @@ function NewPost(props) {
     
 
     async function createPost() {
-        if (!postData.title || !postData.content) {
-            return alert('please enter a name and description')
+        if (!postData.title || !postData.content || !postData.description || !postData.imageURL) {
+            return alert('please enter a name, content, description and image URL')
             }
         
         const userData = await Auth
@@ -86,13 +87,18 @@ function NewPost(props) {
         postData.username = userData.accessToken.payload.username
 
 
-        // TODO: need implement the content truncate for Post listview
-        const truncateContent = postData.content
 
         const id = uuid()
-        const newPost = { ...postData, 
-                        content:truncateContent,
-                        id: id, type: 'post'}
+        const newPost = {
+                        id: id, 
+                        type: 'post',
+                        title: postData.title,
+                        description: postData.description,
+                        imageURL: postData.imageURL,
+                        username: postData.userID, 
+                        userID: postData.username
+                        }
+        console.log(newPost)
         try {
             // submit data to DynamoDb
             await API.graphql({
@@ -116,8 +122,8 @@ function NewPost(props) {
     }
     
     async function updatePost() {
-        if (!postData.title || !postData.content) {
-            return alert('please enter a name and description')
+        if (!postData.title || !postData.content || !postData.description || !postData.imageURL) {
+            return alert('please enter a name, content, description and image URL')
             }
         
         const userData = await Auth
@@ -127,14 +133,14 @@ function NewPost(props) {
         postData.userID = userData.accessToken.payload.username
         postData.username = userData.accessToken.payload.username
 
-        // TODO: need implement the content truncate for Post listview
-        const truncateContent = postData.content
+
 
         const newPost = {
-                        id: postID,
-                        title:postData.title,
-                        content: truncateContent
-                        }
+                    id: postData.id, 
+                    title: postData.title,
+                    description: postData.description,
+                    imageURL: postData.imageURL
+                }
 
         try {
             // submit data to DynamoDb
@@ -195,9 +201,12 @@ function NewPost(props) {
     }
 
     return (
+        
         <Row justify="center">
         <Col span={20}>
-            <Input placeholder="Title" bordered={false} style={{fontSize: '3em'}} name='title' value={postData.title} onChange={e => handleTextChange('title', e.target.value)}/>
+            <Input placeholder="Title" bordered={false} style={{fontSize: '3em', marginBottom: 12}} name='title' value={postData.title} onChange={e => handleTextChange('title', e.target.value)}/>
+            <Input placeholder="ImageURL" style={{ marginBottom: 12 }} name='imageURL' value={postData.imageURL} onChange={e => handleTextChange('imageURL', e.target.value)}/>
+            <TextArea value={postData.description} style={{ marginBottom: 12 }} onChange={e => handleTextChange('description', e.target.value)} placeholder="Description" autoSize={{ minRows: 3, maxRows: 5 }} maxLength={300} />
             <SimpleMDE options={{uploadImage:true ,imageAccept:['image/png', 'image/jpeg'],  imageUploadFunction: imageUploadFunction}} 
                 onChange={e => handleTextChange('content', e)} name='content' value={postData.content}/>
             <Row justify="center">
@@ -216,6 +225,7 @@ function NewPost(props) {
             </Row>
         </Col>
         </Row>
+        
     )
 }
 export default NewPost

@@ -58,7 +58,7 @@ function Home() {
             <img
                 width={272}
                 alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                src={item.imageURL}
             />
             }>
             <List.Item.Meta
@@ -66,7 +66,7 @@ function Home() {
             title={<Link to={'/'+item.id}>{item.title}</Link>}
             description= {(<><Link to={'/blog/'+ item.userID}>{item.username}</Link>  <span>{'   ' +  moment(item.createdAt).format('YYYY-MM-DD HH:mm')}</span></>)}
             />
-            {item.content}
+            {item.description}
         </List.Item>
     )
 
