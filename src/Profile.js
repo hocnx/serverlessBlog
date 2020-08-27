@@ -21,7 +21,7 @@ function Profile() {
         });
     }, []);
 
-        return user && user.attributes.email ?
+        return user && user.attributes ?
             (
             <>
             <Row justify="center">
