@@ -8,25 +8,10 @@ import IconText from './IconText'
 import { postsByUser as PostsByUser } from './graphql/queries'
 import { API } from 'aws-amplify'
  
-import { Row, Col, Divider } from 'antd';
+import { Row, Col } from 'antd';
 import { Link, useParams } from 'react-router-dom';
 import moment from 'moment'
 import checkUser from './checkUser'
-
-const data = [
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-  ];
 
 function Home() {
     const {userID} = useParams()
@@ -71,8 +56,8 @@ function Home() {
     )
 
     return (
-        <Row justify="space-between">
-            <Col span={17}>
+        <Row justify="center">
+            <Col span={20}>
                 <List
                     itemLayout="vertical"
                     size="large"
@@ -88,22 +73,6 @@ function Home() {
                     renderItem={renderItem}
                 />
             </Col>
-        <Col span={6}>
-            <Divider>Porpular posts</Divider>
-            <List
-                itemLayout="horizontal"
-                dataSource={data}
-                renderItem={item => (
-                    <List.Item>
-                    <List.Item.Meta
-                        avatar={<Avatar userID='hocnx' />}
-                        title={<a href="https://ant.design">{item.title}</a>}
-                        description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                    /> 
-                    </List.Item>
-                )}
-            />
-        </Col>
     </Row>
   )
 }
