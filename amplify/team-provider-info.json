@@ -1,33 +1,15 @@
 {
-    "test": {
+    "dev": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-serverlessblog-test-170439-authRole",
-            "UnauthRoleArn": "arn:aws:iam::688466737956:role/amplify-serverlessblog-test-170439-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::688466737956:role/amplify-serverlessblog-test-170439-authRole",
+            "AuthRoleName": "amplify-serverlessblog-dev-233542-authRole",
+            "UnauthRoleArn": "arn:aws:iam::688466737956:role/amplify-serverlessblog-dev-233542-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::688466737956:role/amplify-serverlessblog-dev-233542-authRole",
             "Region": "ap-northeast-1",
-            "DeploymentBucketName": "amplify-serverlessblog-test-170439-deployment",
-            "UnauthRoleName": "amplify-serverlessblog-test-170439-unauthRole",
-            "StackName": "amplify-serverlessblog-test-170439",
-            "StackId": "arn:aws:cloudformation:ap-northeast-1:688466737956:stack/amplify-serverlessblog-test-170439/f91a3e10-decd-11ea-ad1a-0af0ae9d5064",
-            "AmplifyAppId": "d8fk1qtun7k56"
-        },
-        "categories": {
-            "auth": {
-                "serverlessblogfc81b11e": {}
-            }
-        }
-    },
-    "prod": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-serverlessblog-prod-194949-authRole",
-            "UnauthRoleArn": "arn:aws:iam::688466737956:role/amplify-serverlessblog-prod-194949-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::688466737956:role/amplify-serverlessblog-prod-194949-authRole",
-            "Region": "ap-northeast-1",
-            "DeploymentBucketName": "amplify-serverlessblog-prod-194949-deployment",
-            "UnauthRoleName": "amplify-serverlessblog-prod-194949-unauthRole",
-            "StackName": "amplify-serverlessblog-prod-194949",
-            "StackId": "arn:aws:cloudformation:ap-northeast-1:688466737956:stack/amplify-serverlessblog-prod-194949/0876bb70-e853-11ea-a52c-0af1581a9dde",
-            "AmplifyAppId": "d8fk1qtun7k56"
+            "DeploymentBucketName": "amplify-serverlessblog-dev-233542-deployment",
+            "UnauthRoleName": "amplify-serverlessblog-dev-233542-unauthRole",
+            "StackName": "amplify-serverlessblog-dev-233542",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:688466737956:stack/amplify-serverlessblog-dev-233542/971e90e0-e872-11ea-9299-0e0b289c0070",
+            "AmplifyAppId": "d22v6ujn3bzbm7"
         },
         "categories": {
             "auth": {
