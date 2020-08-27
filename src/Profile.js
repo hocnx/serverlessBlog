@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {AmplifyAuthenticator,  AmplifySignUp, AmplifySignOut} from '@aws-amplify/ui-react'
+import {AmplifyAuthenticator,  AmplifySignUp, AmplifySignOut, AmplifyConfirmSignUp} from '@aws-amplify/ui-react'
 import { Auth} from 'aws-amplify'
 import { Avatar, Row, Col } from 'antd';
 import { UserOutlined} from '@ant-design/icons';
@@ -15,12 +15,13 @@ function Profile() {
 
     React.useEffect(() => {
         return onAuthUIStateChange((nextAuthState, authData) => {
+            console.log('authData:::', authData)
             setUser(authData)
             console.log('authData: ', authData)
         });
     }, []);
 
-        return user ?
+        return user && user.attributes ?
             (
             <>
             <Row justify="center">
@@ -61,6 +62,7 @@ function Profile() {
                 }
             ]} 
             />
+            <AmplifyConfirmSignUp />
         </AmplifyAuthenticator>
         </div>
     )
