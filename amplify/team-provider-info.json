@@ -16,5 +16,23 @@
                 "serverlessblogfc81b11e": {}
             }
         }
+    },
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-serverlessblog-prod-93547-authRole",
+            "UnauthRoleArn": "arn:aws:iam::688466737956:role/amplify-serverlessblog-prod-93547-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::688466737956:role/amplify-serverlessblog-prod-93547-authRole",
+            "Region": "ap-northeast-1",
+            "DeploymentBucketName": "amplify-serverlessblog-prod-93547-deployment",
+            "UnauthRoleName": "amplify-serverlessblog-prod-93547-unauthRole",
+            "StackName": "amplify-serverlessblog-prod-93547",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:688466737956:stack/amplify-serverlessblog-prod-93547/6aed80e0-e8c6-11ea-b0aa-065c56f01aee",
+            "AmplifyAppId": "d22v6ujn3bzbm7"
+        },
+        "categories": {
+            "auth": {
+                "serverlessblogfc81b11e": {}
+            }
+        }
     }
 }
