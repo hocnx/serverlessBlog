@@ -24,11 +24,13 @@ function ProfilePictureUpload({username, reloadPage}) {
         try {
             const keyName = 'profile_pictures/' + username
             console.log('keyName:', keyName)
+            console.log('file:', file)
             await Storage.put(
                 keyName, 
                 file,
                 {
-                    acl: 'public-read'
+                    acl: 'public-read',
+                    contentType: file.type
                 })
 
             onSuccess(null, file)
