@@ -12,8 +12,14 @@
             "AmplifyAppId": "d22v6ujn3bzbm7"
         },
         "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d22v6ujn3bzbm7",
+                    "type": "cicd"
+                }
+            },
             "auth": {
-                "serverlessblogfc81b11e": {}
+                "serverlessblog9f706c99": {}
             }
         }
     },
@@ -32,6 +38,12 @@
         "categories": {
             "auth": {
                 "serverlessblogfc81b11e": {}
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d22v6ujn3bzbm7",
+                    "type": "cicd"
+                }
             }
         }
     }

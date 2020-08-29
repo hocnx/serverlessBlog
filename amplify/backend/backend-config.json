@@ -1,9 +1,10 @@
 {
 	"auth": {
-		"serverlessblogfc81b11e": {
+		"serverlessblog9f706c99": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
-			"dependsOn": []
+			"dependsOn": [],
+			"customAuth": false
 		}
 	},
 	"api": {
@@ -15,7 +16,7 @@
 					"defaultAuthentication": {
 						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
 						"userPoolConfig": {
-							"userPoolId": "authserverlessblogfc81b11e"
+							"userPoolId": "authserverlessblog9f706c99"
 						}
 					},
 					"additionalAuthenticationProviders": [
@@ -35,6 +36,12 @@
 		"serverlessblog": {
 			"service": "S3",
 			"providerPlugin": "awscloudformation"
+		}
+	},
+	"hosting": {
+		"amplifyhosting": {
+			"service": "amplifyhosting",
+			"type": "cicd"
 		}
 	}
 }

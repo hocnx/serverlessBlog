@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "serverlessblogfc81b11e_identitypool_fc81b11e",
+    "identityPoolName": "serverlessblog9f706c99_identitypool_9f706c99",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "serverfc81b11e",
-    "userPoolName": "serverlessblogfc81b11e_userpool_fc81b11e",
+    "resourceNameTruncated": "server9f706c99",
+    "userPoolName": "serverlessblog9f706c99_userpool_9f706c99",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "serverfc81b11e_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "server9f706c99_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "fc81b11e",
-    "resourceName": "serverlessblogfc81b11e",
+    "sharedId": "9f706c99",
+    "resourceName": "serverlessblog9f706c99",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -46,11 +46,6 @@
         ]
     },
     "useDefault": "default",
-    "triggers": "{}",
     "userPoolGroupList": [],
-    "parentStack": {
-        "Ref": "AWS::StackId"
-    },
-    "permissions": [],
     "dependsOn": []
 }
