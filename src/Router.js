@@ -30,11 +30,11 @@ const Router = () => {
     }
     return (
         <HashRouter>
-            <Layout>
-                <Header style={{ position: 'fixed', zIndex: 1, width: '100%', background: 'white' }}>
+            <Layout style={{ padding: '0'}}>
+                <Header style={{ position: 'fixed', zIndex: 1, width: '100%', padding: '0', background: 'white' }}>
                     <Nav current={current} />
                 </Header>
-            <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+            <Content className="site-layout" style={{marginTop: 64 ,padding: '0',  background: 'white' }}>
             <Container>
                 <Switch>
                     <Route exact path='/' component={Home}/>
@@ -44,7 +44,6 @@ const Router = () => {
                     <Route exact path='/admin' component={Admin}/>
                     <Route exact path='/:id' component={Post}/>
                     <Route exact path='/blog/:userID' component={Blog}/>
-
                 </Switch>
             </Container>
             </Content>
