@@ -1,23 +1,23 @@
-import {Auth} from 'aws-amplify'
+import { Auth } from "aws-amplify";
 
 async function checkUser(updateUser) {
-  const userData = await Auth
-    .currentSession()
-    .catch(err => console.log('error: ', err)
-  )
+  const userData = await Auth.currentSession().catch((err) =>
+    console.log("error: ", err)
+  );
   if (!userData) {
-    console.log('userData: ', userData)
-    updateUser()
-    return
+    console.log("userData: ", userData);
+    updateUser();
+    return;
   }
-  const { idToken: { payload }} = userData
+  const {
+    idToken: { payload },
+  } = userData;
   const isAuthorized =
-    payload['cognito:groups'] &&
-  payload['cognito:groups'].includes('Admin')
+    payload["cognito:groups"] && payload["cognito:groups"].includes("Admin");
   updateUser({
-    username: payload['cognito:username'],
-    userID: payload['cognito:username'],
-    isAdmin: isAuthorized
-  })
+    username: payload["cognito:username"],
+    userID: payload["cognito:username"],
+    isAdmin: isAuthorized,
+  });
 }
-export default checkUser
+export default checkUser;

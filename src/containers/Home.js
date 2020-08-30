@@ -1,33 +1,32 @@
-import React, {useState, useEffect} from 'react'
-import { listSortedPosts as ListSortedPosts } from '../graphql/queries'
-import { API } from 'aws-amplify'
-import { Row, Col } from 'antd'
-import PostListItem from '../components/PostListItem'
+import React, { useState, useEffect } from "react";
+import { listSortedPosts as ListSortedPosts } from "../graphql/queries";
+import { API } from "aws-amplify";
+import { Row, Col } from "antd";
+import PostListItem from "../components/PostListItem";
 
 function Home() {
-    const [listData, setListData] = useState([])
+  const [listData, setListData] = useState([]);
 
-    async function fetchPosts(){
-        const posts = await API.graphql({
-            query: ListSortedPosts,
-            variables: {type:'post', sortDirection: 'DESC'} , 
-            authMode:'API_KEY'
-        })
-        console.log(posts)
-        setListData(posts.data.listSortedPosts.items)
-    }
+  async function fetchPosts() {
+    const posts = await API.graphql({
+      query: ListSortedPosts,
+      variables: { type: "post", sortDirection: "DESC" },
+      authMode: "API_KEY",
+    });
+    console.log(posts);
+    setListData(posts.data.listSortedPosts.items);
+  }
 
-    useEffect(() => {
-        fetchPosts()
-    },[])
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
-
-    return (
-        <Row justify="center">
-            <Col span={20}>
-                <PostListItem listData={listData} />
-            </Col>
-        </Row>
-    )
+  return (
+    <Row justify="center">
+      <Col span={20}>
+        <PostListItem listData={listData} />
+      </Col>
+    </Row>
+  );
 }
-export default Home
+export default Home;

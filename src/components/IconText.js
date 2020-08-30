@@ -1,9 +1,9 @@
-import React from 'react'
-import {Space} from 'antd'
+import React from "react";
+import { Space } from "antd";
 const IconText = ({ icon, text }) => (
-    <Space>
-      {React.createElement(icon)}
-      {text}
-    </Space>
-  );
-export default IconText
+  <Space>
+    {React.createElement(icon)}
+    {text}
+  </Space>
+);
+export default IconText;
