@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div style={footerStyle}>
-      <Link to="/admin">Admin</Link>
+      XHC 2020 Created by HocNX
     </div>
   );
 };
