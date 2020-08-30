@@ -10,7 +10,9 @@ import NewPost from './containers/NewPost'
 import Admin from './Admin'
 import Post from './containers/Post'
 import Blog from './containers/Blog'
+import { Layout } from 'antd'
 
+const { Header, Content } = Layout;
 
 const Router = () => {
 
@@ -28,7 +30,11 @@ const Router = () => {
     }
     return (
         <HashRouter>
-            <Nav current={current} />
+            <Layout>
+                <Header style={{ position: 'fixed', zIndex: 1, width: '100%', background: 'white' }}>
+                    <Nav current={current} />
+                </Header>
+            <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
             <Container>
                 <Switch>
                     <Route exact path='/' component={Home}/>
@@ -41,8 +47,11 @@ const Router = () => {
 
                 </Switch>
             </Container>
+            </Content>
             <Footer />
+            </Layout>
         </HashRouter>
+       
     )
 }
 

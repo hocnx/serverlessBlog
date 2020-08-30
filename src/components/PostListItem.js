@@ -22,7 +22,7 @@ const PostListItem = ({ listData }) => {
     >
       <List.Item.Meta
         avatar={<Avatar userID={item.userID} />}
-        title={<Link to={"/" + item.id}><h1>{item.title}</h1></Link>}
+        title={<Link to={"/" + item.id}><h1 style={{fontSize: '2em'}}>{item.title}</h1></Link>}
         description={
           <>
             <Link to={"/blog/" + item.userID}>{item.username}</Link>{" "}
