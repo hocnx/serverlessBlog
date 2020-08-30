@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import {HashRouter, Switch, Route} from 'react-router-dom'
 
-import Container from './Container'
-import Nav from './Nav'
-import Footer from './Footer'
-import Home from './Home'
-import Profile from './Profile'
-import NewPost from './NewPost'
+import Container from './containers/Container'
+import Nav from './components/Nav'
+import Footer from './components/Footer'
+import Home from './containers/Home'
+import Profile from './containers/Profile'
+import NewPost from './containers/NewPost'
 import Admin from './Admin'
-import Post from './Post'
-import Blog from './Blog'
+import Post from './containers/Post'
+import Blog from './containers/Blog'
 
 
 const Router = () => {

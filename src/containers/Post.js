@@ -1,14 +1,14 @@
 import React,{useState, useEffect} from 'react'
 import { useParams, Link} from 'react-router-dom'
 import {API} from 'aws-amplify'
-import {getPost as GetPost} from './graphql/queries'
+import {getPost as GetPost} from '../graphql/queries'
 import  ReactMarkdown from 'react-markdown'
 import NewComment from './NewComment'
 import ListComments from './ListComments'
 import {Comment, Row, Col, Space} from 'antd'
-import Avatar from './Avatar'
-import getPostMdFile from './getPostMdFile'
-import checkUser from './checkUser'
+import Avatar from '../components/Avatar'
+import getPostMdFile from '../s3/getPostMdFile'
+import checkUser from '../checkUser'
 import { EditOutlined} from '@ant-design/icons';
 
 

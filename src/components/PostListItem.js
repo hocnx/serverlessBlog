@@ -1,38 +1,13 @@
-import React, {useState, useEffect} from 'react'
-
-import { List } from 'antd';
-import Avatar from './Avatar'
-import { MessageOutlined } from '@ant-design/icons';
+import React from 'react'
+import {Link} from 'react-router-dom'
+import {List} from 'antd'
+import { MessageOutlined } from '@ant-design/icons'
+import { Row, Col } from 'antd'
 import IconText from './IconText'
-
-import { postsByUser as PostsByUser } from './graphql/queries'
-import { API } from 'aws-amplify'
- 
-import { Row, Col } from 'antd';
-import { Link, useParams } from 'react-router-dom';
+import Avatar from './Avatar'
 import moment from 'moment'
-import checkUser from './checkUser'
 
-function Home() {
-    const {userID} = useParams()
-    const [listData, setListData] = useState([])
-    const [user, updateUser] = useState({})
-    async function fetchPosts(){
-        const posts = await API.graphql({
-            query: PostsByUser,
-            variables: {userID: userID,  sortDirection: 'DESC'},
-            authMode:'API_KEY'
-        })
-        console.log(posts)
-        setListData(posts.data.postsByUser.items)
-    }
-
-    useEffect(() => {
-        checkUser(updateUser)
-        console.log('user: ',user)
-        fetchPosts()
-    },[])
-
+const PostListItem = ({listData}) => {
     const  renderItem = item => (
         <List.Item
             key={item.id}
@@ -76,4 +51,5 @@ function Home() {
     </Row>
   )
 }
-export default Home
+
+export default PostListItem

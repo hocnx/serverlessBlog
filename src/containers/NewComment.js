@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
-import { Form, Button, Input } from 'antd';
+import {Form, Button, Input } from 'antd';
 import {API} from 'aws-amplify'
 import { v4 as uuid } from 'uuid'
-import {createComment as CreateComment} from './graphql/mutations'
+import {createComment as CreateComment} from '../graphql/mutations'
 
 function NewComment({postID, reloadPage, user}){
     
@@ -18,7 +18,7 @@ function NewComment({postID, reloadPage, user}){
         if(comment === '') {
             return alert('please enter a comment')        
         }
-
+        
         const newComment = {
             id: uuid(),
             postID: postID,

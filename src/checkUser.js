@@ -1,4 +1,5 @@
-import { Auth } from 'aws-amplify'
+import {Auth} from 'aws-amplify'
+
 async function checkUser(updateUser) {
   const userData = await Auth
     .currentSession()

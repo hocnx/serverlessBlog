@@ -5,15 +5,15 @@ import {ExclamationCircleOutlined} from '@ant-design/icons'
 
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
-import {createPost as CreatePost, updatePost as UpdatePost} from './graphql/mutations'
+import {createPost as CreatePost, updatePost as UpdatePost} from '../graphql/mutations'
 import { v4 as uuid } from 'uuid'
 import { API, Storage} from 'aws-amplify'
 import { useParams } from 'react-router-dom'
-import getImageUrl from './getImageUrl'
+import getImageUrl from '../s3/getImageUrl'
 
 
-import {getPost as GetPost} from './graphql/queries'
-import getPostMdFile from './getPostMdFile'
+import {getPost as GetPost} from '../graphql/queries'
+import getPostMdFile from '../s3/getPostMdFile'
 
 
 

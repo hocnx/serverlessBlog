@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { AmplifySignUp} from '@aws-amplify/ui-react';
+import React, {useEffect} from 'react'
+import {AmplifySignUp} from '@aws-amplify/ui-react';
 import {AmplifyAuthenticator, AmplifySignOut, AmplifyConfirmSignUp} from '@aws-amplify/ui-react'
-import { Auth } from 'aws-amplify'
-import { Avatar, Row, Col } from 'antd';
-import { UserOutlined} from '@ant-design/icons';
-import { AuthState, onAuthUIStateChange} from '@aws-amplify/ui-components';
+import {Avatar, Row, Col} from 'antd';
+import {UserOutlined} from '@ant-design/icons';
+import {AuthState, onAuthUIStateChange} from '@aws-amplify/ui-components';
 
 
-import ProfilePictureUpload from './ProfilePictureUpload'
-import getProfileImage from './getProfileImage'
+import ProfilePictureUpload from '../components/ProfilePictureUpload'
+import getProfileImage from '../s3/getProfileImage'
 
 
 const Profile = () => {

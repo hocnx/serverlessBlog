@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {Menu, Button} from 'antd'
 import {Link} from 'react-router-dom'
 import {HomeOutlined, UserOutlined, SettingOutlined, PlusOutlined, AimOutlined} from '@ant-design/icons'
-import checkUser from './checkUser'
+import checkUser from '../checkUser'
 import { Hub } from 'aws-amplify'
 
 const Nav = current => {

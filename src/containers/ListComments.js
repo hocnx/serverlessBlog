@@ -1,8 +1,7 @@
 import React from 'react'
-import { Comment, Tooltip, Form, Button, List, Input } from 'antd';
-import Avatar from  './Avatar'
+import {Comment, Tooltip, List} from 'antd';
+import Avatar from  '../components/Avatar'
 import moment from 'moment';
-import getProfileImage from './getProfileImage'
 
 function ListComments({comments}) {
     return (
