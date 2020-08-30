@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { API } from "aws-amplify";
 import { getPost as GetPost } from "../graphql/queries";
-import ReactMarkdown from "react-markdown";
 import NewComment from "./NewComment";
 import ListComments from "./ListComments";
-import { Comment, Row, Col, Space } from "antd";
+import { Comment, Row, Col, Space, Divider} from "antd";
 import Avatar from "../components/Avatar";
 import getPostMdFile from "../s3/getPostMdFile";
 import checkUser from "../checkUser";
 import { EditOutlined } from "@ant-design/icons";
+import MarkdownPreview from '@uiw/react-markdown-preview';
+
 
 function Post() {
   const [post, updatePost] = useState({});
@@ -50,6 +51,8 @@ function Post() {
 
   return (
     <Row justify="center">
+    <Col span={20}>
+    <Row justify="center">
       <Col span={20}>
         <Space>
           <h1>{post.title}</h1>
@@ -58,8 +61,10 @@ function Post() {
               <EditOutlined style={{ fontSize: "24px", color: "#08c" }} />
             </Link>
           )}
+
         </Space>
-        <ReactMarkdown source={post.content} />
+        <Divider orientation="left" plain> Content </Divider>
+        <MarkdownPreview source={post.content} />
         {user ? (
           <Comment
             avatar={<Avatar userID={user.userID} />}
@@ -81,6 +86,8 @@ function Post() {
 
         {post.comments && <ListComments comments={post.comments.items} />}
       </Col>
+    </Row>
+    </Col>
     </Row>
   );
 }
