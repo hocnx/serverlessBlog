@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { listSortedPosts as ListSortedPosts } from "../graphql/queries";
+import { listSortedPosts as ListSortedPosts } from "../graphql/customQueries";
 import { API } from "aws-amplify";
 import { Row, Col } from "antd";
 import PostListItem from "../components/PostListItem";

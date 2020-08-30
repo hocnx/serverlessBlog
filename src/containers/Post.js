@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { API } from "aws-amplify";
-import { getPost as GetPost } from "../graphql/queries";
+import { getPost as GetPost } from "../graphql/customQueries";
 import ReactMarkdown from "react-markdown";
 import NewComment from "./NewComment";
 import ListComments from "./ListComments";
