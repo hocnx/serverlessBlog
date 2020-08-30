@@ -55,7 +55,7 @@ function Post() {
     <Row justify="center">
       <Col span={20}>
         <Space>
-          <h1>{post.title}</h1>
+          <h1 style={{fontSize: '3em'}}>{post.title}</h1>
           {user && user.userID === post.userID && (
             <Link to={"/" + id + "/edit"}>
               <EditOutlined style={{ fontSize: "24px", color: "#08c" }} />
@@ -63,7 +63,6 @@ function Post() {
           )}
 
         </Space>
-        <Divider orientation="left" plain> Content </Divider>
         <MarkdownPreview source={post.content} />
         {user ? (
           <Comment
