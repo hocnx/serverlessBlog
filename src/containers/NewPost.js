@@ -26,7 +26,7 @@ function NewPost(props) {
     content: "",
     description: "",
     imageURL: "",
-    isPublish: false
+    isPublish: false,
   };
   const { postID } = useParams();
   const [postData, updatePostData] = useState(initialValue);
@@ -49,8 +49,8 @@ function NewPost(props) {
     if (postID) {
       fetchPost();
     } else {
-      console.log(postData)
-        updatePostData({...postData, id: uuid()})
+      console.log(postData);
+      updatePostData({ ...postData, id: uuid() });
     }
   }, []);
 
@@ -151,7 +151,7 @@ function NewPost(props) {
       title: postData.title,
       description: postData.description,
       imageURL: postData.imageURL,
-      isPublish: isPublish
+      isPublish: isPublish,
     };
 
     try {
@@ -239,32 +239,35 @@ function NewPost(props) {
               <Col span={4}>
                 <Space>
                   <Button onClick={cancelPost}>Cancel</Button>
-                  {
-                  postID ? (
+                  {postID ? (
                     <>
-                    
-                    {!postData.isPublish && (
-                        <Button type="primary" onClick={e => updatePost(false)} danger>
-                            Save draft
+                      {!postData.isPublish && (
+                        <Button
+                          type="primary"
+                          onClick={(e) => updatePost(false)}
+                          danger
+                        >
+                          Save draft
                         </Button>
-                    )
-                    }
-                    <Button type="primary" onClick={e => updatePost(true)}>
-                        Puslish
-                    </Button>
+                      )}
+                      <Button type="primary" onClick={(e) => updatePost(true)}>
+                        Publish
+                      </Button>
                     </>
                   ) : (
                     <>
-                    <Button type="primary" onClick={e => createPost(false)} danger>
+                      <Button
+                        type="primary"
+                        onClick={(e) => createPost(false)}
+                        danger
+                      >
                         Save draft
-                    </Button>
-                    <Button type="primary" onClick={e => createPost(true)}>
-                        Puslish
-                    </Button>
+                      </Button>
+                      <Button type="primary" onClick={(e) => createPost(true)}>
+                        Publish
+                      </Button>
                     </>
-                  )
-                  }
-                  
+                  )}
                 </Space>
               </Col>
             </Row>
