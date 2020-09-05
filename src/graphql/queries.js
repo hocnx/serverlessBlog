@@ -11,6 +11,7 @@ export const getPost = /* GraphQL */ `
       description
       username
       userID
+      isPublish
       createdAt
       updatedAt
       comments {
@@ -43,6 +44,7 @@ export const listPosts = /* GraphQL */ `
         description
         username
         userID
+        isPublish
         createdAt
         updatedAt
         comments {
@@ -78,6 +80,7 @@ export const listSortedPosts = /* GraphQL */ `
         description
         username
         userID
+        isPublish
         createdAt
         updatedAt
         comments {
@@ -113,6 +116,7 @@ export const postsByUser = /* GraphQL */ `
         description
         username
         userID
+        isPublish
         createdAt
         updatedAt
         comments {

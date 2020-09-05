@@ -13,6 +13,7 @@ type Post @model
   description: String!
   username: String!
   userID: String!
+  isPublish: Boolean
   createdAt: String
   comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
 }

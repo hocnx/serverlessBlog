@@ -4,13 +4,16 @@ import { API } from "aws-amplify";
 import { getPost as GetPost } from "../graphql/queries";
 import NewComment from "./NewComment";
 import ListComments from "./ListComments";
-import { Comment, Row, Col, Space, Divider} from "antd";
+import { Comment, Row, Col, Space, Divider } from "antd";
 import Avatar from "../components/Avatar";
 import getPostMdFile from "../s3/getPostMdFile";
 import checkUser from "../checkUser";
-import { EditOutlined } from "@ant-design/icons";
-import MarkdownPreview from '@uiw/react-markdown-preview';
-
+import {
+  EditOutlined,
+  EyeOutlined,
+  EyeInvisibleOutlined,
+} from "@ant-design/icons";
+import MarkdownPreview from "@uiw/react-markdown-preview";
 
 function Post() {
   const [post, updatePost] = useState({});
@@ -51,42 +54,52 @@ function Post() {
 
   return (
     <Row justify="center">
-    <Col span={20}>
-    <Row justify="center">
       <Col span={20}>
-        <Space>
-          <h1 style={{fontSize: '3em'}}>{post.title}</h1>
-          {user && user.userID === post.userID && (
-            <Link to={"/" + id + "/edit"}>
-              <EditOutlined style={{ fontSize: "24px", color: "#08c" }} />
-            </Link>
-          )}
-
-        </Space>
-        <MarkdownPreview source={post.content} />
-        {user ? (
-          <Comment
-            avatar={<Avatar userID={user.userID} />}
-            content={
-              <NewComment
-                postID={id}
-                reloadPage={() => fetchPost(id)}
-                user={user}
+        <Row justify="center">
+          <Col span={20}>
+            <Space>
+              <h1>{post.title}</h1>
+              {user && user.userID === post.userID && (
+                <>
+                  {post.isPublish ? (
+                    <EyeOutlined style={{ fontSize: "24px" }} />
+                  ) : (
+                    <EyeInvisibleOutlined style={{ fontSize: "24px" }} />
+                  )}
+                  <Link to={"/" + id + "/edit"}>
+                    <EditOutlined style={{ fontSize: "24px", color: "#08c" }} />
+                  </Link>
+                </>
+              )}
+            </Space>
+            <Divider orientation="left" plain>
+              {" "}
+              Content{" "}
+            </Divider>
+            <MarkdownPreview source={post.content} />
+            {user ? (
+              <Comment
+                avatar={<Avatar userID={user.userID} />}
+                content={
+                  <NewComment
+                    postID={id}
+                    reloadPage={() => fetchPost(id)}
+                    user={user}
+                  />
+                }
               />
-            }
-          />
-        ) : (
-          <Row justify="center">
-            <Col span={2}>
-              <Link to="/profile">Login to comment</Link>
-            </Col>
-          </Row>
-        )}
+            ) : (
+              <Row justify="center">
+                <Col span={2}>
+                  <Link to="/profile">Login to comment</Link>
+                </Col>
+              </Row>
+            )}
 
-        {post.comments && <ListComments comments={post.comments.items} />}
+            {post.comments && <ListComments comments={post.comments.items} />}
+          </Col>
+        </Row>
       </Col>
-    </Row>
-    </Col>
     </Row>
   );
 }

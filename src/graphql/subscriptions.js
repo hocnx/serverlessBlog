@@ -11,6 +11,7 @@ export const onCreatePost = /* GraphQL */ `
       description
       username
       userID
+      isPublish
       createdAt
       updatedAt
       comments {
@@ -38,6 +39,7 @@ export const onUpdatePost = /* GraphQL */ `
       description
       username
       userID
+      isPublish
       createdAt
       updatedAt
       comments {
@@ -65,6 +67,7 @@ export const onDeletePost = /* GraphQL */ `
       description
       username
       userID
+      isPublish
       createdAt
       updatedAt
       comments {

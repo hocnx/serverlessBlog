@@ -1,13 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { List } from "antd";
-import { MessageOutlined } from "@ant-design/icons";
-import { Row, Col } from "antd";
+import {
+  MessageOutlined,
+  EyeOutlined,
+  EyeInvisibleOutlined,
+} from "@ant-design/icons";
+import { Row, Col, Space } from "antd";
 import IconText from "./IconText";
 import Avatar from "./Avatar";
 import moment from "moment";
 
-const PostListItem = ({ listData }) => {
+const PostListItem = ({ listData, isMyPage }) => {
   const renderItem = (item) => (
     <List.Item
       key={item.id}
@@ -18,11 +22,26 @@ const PostListItem = ({ listData }) => {
           key="list-vertical-message"
         />,
       ]}
-      extra={<img width={256} alt="logo" src={item.imageURL}  style={{ width: "256px", maxHeight: "140px", objectFit: "cover" }}/>}
+      extra={
+        <img
+          width={256}
+          alt="logo"
+          src={item.imageURL}
+          style={{ width: "256px", maxHeight: "140px", objectFit: "cover" }}
+        />
+      }
     >
       <List.Item.Meta
         avatar={<Avatar userID={item.userID} />}
-        title={<Link to={"/" + item.id}><h1 style={{fontSize: '2em'}}>{item.title}</h1></Link>}
+        title={
+          <Space>
+            <Link to={"/" + item.id}>
+              <h1 style={{ fontSize: "2em" }}>{item.title}</h1>
+            </Link>
+            {isMyPage &&
+              (item.isPublish ? <EyeOutlined style={{ fontSize: "24px" }}/> : <EyeInvisibleOutlined style={{ fontSize: "24px" }}/>)}
+          </Space>
+        }
         description={
           <>
             <Link to={"/blog/" + item.userID}>{item.username}</Link>{" "}
