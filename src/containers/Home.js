@@ -10,7 +10,15 @@ function Home() {
   async function fetchPosts() {
     const posts = await API.graphql({
       query: ListSortedPosts,
-      variables: { type: "post", sortDirection: "DESC" },
+      variables: {
+        type: "post",
+        sortDirection: "DESC",
+        filter: {
+          isPublish: {
+            eq: true,
+          },
+        },
+      },
       authMode: "API_KEY",
     });
     console.log(posts);

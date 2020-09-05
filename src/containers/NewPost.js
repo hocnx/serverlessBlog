@@ -26,6 +26,7 @@ function NewPost(props) {
     content: "",
     description: "",
     imageURL: "",
+    isPublish: false
   };
   const { postID } = useParams();
   const [postData, updatePostData] = useState(initialValue);
@@ -48,6 +49,7 @@ function NewPost(props) {
     if (postID) {
       fetchPost();
     } else {
+      console.log(postData)
         updatePostData({...postData, id: uuid()})
     }
   }, []);
@@ -79,14 +81,14 @@ function NewPost(props) {
     }
   }
 
-  async function createPost(isPuslish) {
+  async function createPost(isPublish) {
     if (
       !postData.title ||
       !postData.content ||
       !postData.description ||
       !postData.imageURL
     ) {
-      return alert("please enter a name, content, description and image URL");
+      return alert("please enter a name, content, description and image URL2");
     }
 
     const userData = await Auth.currentSession().catch((err) =>
@@ -99,7 +101,7 @@ function NewPost(props) {
     const newPost = {
       id: postData.id,
       type: "post",
-      isPuslish: isPuslish,
+      isPublish: isPublish,
       title: postData.title,
       description: postData.description,
       imageURL: postData.imageURL,
@@ -127,7 +129,7 @@ function NewPost(props) {
     }
   }
 
-  async function updatePost(isPuslish) {
+  async function updatePost(isPublish) {
     if (
       !postData.title ||
       !postData.content ||
@@ -149,7 +151,7 @@ function NewPost(props) {
       title: postData.title,
       description: postData.description,
       imageURL: postData.imageURL,
-      isPuslish: isPuslish
+      isPublish: isPublish
     };
 
     try {
@@ -240,23 +242,23 @@ function NewPost(props) {
                   {
                   postID ? (
                     <>
-                    {
-                        !postData.isPuslish && (
-                        <Button type="primary" onClick={updatePost(false)}>
+                    
+                    {!postData.isPublish && (
+                        <Button type="primary" onClick={e => updatePost(false)} danger>
                             Save draft
                         </Button>
-                        )
+                    )
                     }
-                    <Button type="primary" onClick={updatePost(true)}>
+                    <Button type="primary" onClick={e => updatePost(true)}>
                         Puslish
                     </Button>
                     </>
                   ) : (
                     <>
-                    <Button type="primary" onClick={createPost(false)}>
+                    <Button type="primary" onClick={e => createPost(false)} danger>
                         Save draft
                     </Button>
-                    <Button type="primary" onClick={createPost(true)}>
+                    <Button type="primary" onClick={e => createPost(true)}>
                         Puslish
                     </Button>
                     </>

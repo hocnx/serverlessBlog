@@ -13,7 +13,6 @@ export const listSortedPosts = /* GraphQL */ `
   ) {
     listSortedPosts(
       type: $type
-      isPuslish: true
       createdAt: $createdAt
       sortDirection: $sortDirection
       filter: $filter
@@ -28,14 +27,15 @@ export const listSortedPosts = /* GraphQL */ `
         description
         username
         userID
+        isPublish
         createdAt
         updatedAt
         comments {
-            items {
-                id
-            }
-          nextToken
-        }
+          items {
+              id
+          }
+        nextToken
+      }
       }
       nextToken
     }
@@ -67,6 +67,7 @@ export const postsByUser = /* GraphQL */ `
         description
         username
         userID
+        isPuslish
         createdAt
         updatedAt
         comments {
