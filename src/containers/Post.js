@@ -48,7 +48,7 @@ function Post() {
         })
         .catch((error) => console.error(error));
     } catch (err) {
-      console.log("err:", err);
+      console.log("err: ", err);
     }
   }
 
