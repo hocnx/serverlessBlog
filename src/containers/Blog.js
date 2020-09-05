@@ -13,6 +13,7 @@ function Blog() {
   console.log("userID: ", userID);
   console.log("login userID: ", user.userID);
   async function fetchPosts() {
+    await checkUser(updateUser);
     let posts = [];
     if (userID === user.userID) {
       console.log("is owner");
@@ -42,9 +43,7 @@ function Blog() {
     setListData(posts.data.postsByUser.items);
   }
 
-  useEffect(() => {
-    checkUser(updateUser);
-    console.log("user: ", user);
+  useEffect(() => {    
     fetchPosts();
   }, [user.userID]);
 
