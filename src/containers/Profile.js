@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { AmplifySignUp } from "@aws-amplify/ui-react";
 import {
   AmplifyAuthenticator,
@@ -11,21 +11,17 @@ import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 
 import ProfilePictureUpload from "../components/ProfilePictureUpload";
 import getProfileImage from "../s3/getProfileImage";
-
-import UserContext from '../context/UserContext'
-
+import {UserContext} from '../context/UserContext'
 
 const Profile = () => {
   const [authState, setAuthState] = React.useState();
-  const [user, setUser] = React.useState();
+  const [user, setUser] = useContext(UserContext);
 
   useEffect(() => {
     return onAuthUIStateChange((nextAuthState, authData) => {
       console.log("authData:", authData);
       console.log("nextAuthState:", nextAuthState);
-
       setAuthState(nextAuthState);
-      setUser(authData);
     });
   }, []);
 
@@ -35,7 +31,6 @@ const Profile = () => {
         <Col span={8}>
           <h1>Profile</h1>
           <h2>Username: {user.username}</h2>
-          <h3>Email: {user.attributes.email}</h3>
         </Col>
         <Col span={4}>
           <Row justify="center">
@@ -51,7 +46,7 @@ const Profile = () => {
             <Col span={24}>
               <ProfilePictureUpload
                 username={user.username}
-                reloadPage={() => setUser({ ...user })}
+                reloadPage={() => setAuthState({ ...authState })}
               />
             </Col>
           </Row>

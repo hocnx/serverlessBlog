@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Menu, Button } from "antd";
 import { Link } from "react-router-dom";
 import {
@@ -8,23 +8,16 @@ import {
   PlusOutlined,
   AimOutlined,
 } from "@ant-design/icons";
-import checkUser from "../checkUser";
 import { Hub } from "aws-amplify";
+import {UserContext} from '../context/UserContext'
 
 const Nav = (current) => {
-  const [user, updateUser] = useState();
+  const [user] = useContext(UserContext);
 
   useEffect(() => {
-    checkUser(updateUser);
-    console.log("user:", user);
-    Hub.listen("auth", (data) => {
-      const {
-        payload: { event },
-      } = data;
-      console.log("event: ", event);
-      if (event === "signIn" || event === "signOut") checkUser(updateUser);
-    });
-  }, []);
+    console.log("user:", user)
+    }
+    , []);
 
   return (
     <Menu current={current} mode="horizontal">
@@ -35,7 +28,7 @@ const Nav = (current) => {
         </Link>
       </Menu.Item>
 
-      {user && (
+      {user.username && (
         <Menu.Item>
           <Link to={"/blog/" + user.userID}>
             <AimOutlined /> My Blog

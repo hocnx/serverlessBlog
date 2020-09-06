@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import { API } from "aws-amplify";
 import { getPost as GetPost } from "../graphql/queries";
@@ -7,7 +7,8 @@ import ListComments from "./ListComments";
 import { Comment, Row, Col, Space, Divider } from "antd";
 import Avatar from "../components/Avatar";
 import getPostMdFile from "../s3/getPostMdFile";
-import checkUser from "../checkUser";
+import {UserContext} from '../context/UserContext'
+
 import {
   EditOutlined,
   EyeOutlined,
@@ -18,10 +19,9 @@ import MarkdownPreview from "@uiw/react-markdown-preview";
 function Post() {
   const [post, updatePost] = useState({});
   const { id } = useParams();
-  const [user, updateUser] = useState();
+  const [user, setUser] = useContext(UserContext);
 
   useEffect(() => {
-    checkUser(updateUser);
     fetchPost();
   }, []);
 
