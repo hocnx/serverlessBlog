@@ -31,7 +31,7 @@ function Home() {
 
   return (
     <Row justify="center">
-      <Col span={20}>
+      <Col span={24}>
         <PostListItem listData={listData} />
       </Col>
     </Row>

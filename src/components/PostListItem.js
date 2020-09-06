@@ -57,7 +57,7 @@ const PostListItem = ({ listData, isMyPage }) => {
 
   return (
     <Row justify="center">
-      <Col span={20}>
+      <Col span={24}>
         <List
           itemLayout="vertical"
           size="large"

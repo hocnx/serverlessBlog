@@ -53,10 +53,8 @@ function Post() {
   }
 
   return (
-    <Row justify="center">
-      <Col span={20}>
         <Row justify="center">
-          <Col span={20}>
+          <Col span={24}>
             <Space>
               <h1>{post.title}</h1>
               {user && user.userID === post.userID && (
@@ -90,7 +88,7 @@ function Post() {
               />
             ) : (
               <Row justify="center">
-                <Col span={2}>
+                <Col span={4}>
                   <Link to="/profile">Login to comment</Link>
                 </Col>
               </Row>
@@ -99,8 +97,6 @@ function Post() {
             {post.comments && <ListComments comments={post.comments.items} />}
           </Col>
         </Row>
-      </Col>
-    </Row>
   );
 }
 export default Post;

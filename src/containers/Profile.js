@@ -12,6 +12,9 @@ import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import ProfilePictureUpload from "../components/ProfilePictureUpload";
 import getProfileImage from "../s3/getProfileImage";
 
+import UserContext from '../context/UserContext'
+
+
 const Profile = () => {
   const [authState, setAuthState] = React.useState();
   const [user, setUser] = React.useState();

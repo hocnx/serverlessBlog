@@ -209,10 +209,8 @@ function NewPost(props) {
   }
 
   return (
-    <Row justify="center">
-      <Col span={20}>
         <Row justify="center">
-          <Col span={20}>
+          <Col span={24}>
             <Input
               placeholder="Title"
               bordered={false}
@@ -273,8 +271,6 @@ function NewPost(props) {
             </Row>
           </Col>
         </Row>
-      </Col>
-    </Row>
   );
 }
 export default NewPost;

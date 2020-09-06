@@ -49,7 +49,7 @@ function Blog() {
 
   return (
     <Row justify="center">
-      <Col span={20}>
+      <Col span={24}>
         <PostListItem
           listData={listData}
           isMyPage={userID === user.userID ? true : false}

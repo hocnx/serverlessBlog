@@ -1,10 +1,14 @@
 import React from "react";
+import { Row, Col } from "antd";
 
 export default function Container({ children }) {
-  return <div style={containerStyle}>{children}</div>;
+  return (
+    <Row justify="center" align="top" style={containerStyle}>
+      <Col flex="900px">{children}</Col>
+    </Row>
+  );
 }
 
 const containerStyle = {
-  padding: "30px 40px",
-  minHeight: "calc(100vh - 120px)",
+  minHeight: "calc(100vh - 120px)"
 };
