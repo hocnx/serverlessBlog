@@ -15,7 +15,7 @@ import {UserContext} from '../context/UserContext'
 
 const Profile = () => {
   const [authState, setAuthState] = React.useState();
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
 
   useEffect(() => {
     return onAuthUIStateChange((nextAuthState, authData) => {
