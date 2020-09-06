@@ -81,12 +81,13 @@ function NewPost(props) {
     }
   }
 
-  async function createPost(isPublish) {
+  async function createPost(isPublish, isDraft) {
     if (
-      !postData.title ||
-      !postData.content ||
-      !postData.description ||
-      !postData.imageURL
+      !isDraft &&
+      (!postData.title ||
+        !postData.content ||
+        !postData.description ||
+        !postData.imageURL)
     ) {
       return alert("please enter a name, content, description and image URL2");
     }
@@ -129,12 +130,13 @@ function NewPost(props) {
     }
   }
 
-  async function updatePost(isPublish) {
+  async function updatePost(isPublish, isDraft) {
     if (
-      !postData.title ||
-      !postData.content ||
-      !postData.description ||
-      !postData.imageURL
+      !isDraft &&
+      (!postData.title ||
+        !postData.content ||
+        !postData.description ||
+        !postData.imageURL)
     ) {
       return alert("please enter a name, content, description and image URL");
     }
@@ -209,68 +211,74 @@ function NewPost(props) {
   }
 
   return (
+    <Row justify="center">
+      <Col span={24}>
+        <Input
+          placeholder="Title"
+          bordered={false}
+          style={{ fontSize: "3em", marginBottom: 12 }}
+          name="title"
+          value={postData.title}
+          onChange={(e) => handleTextChange("title", e.target.value)}
+        />
+        <PostListItemEdit
+          postData={postData}
+          handleTextChange={handleTextChange}
+        />
+        <SimpleMDE
+          options={{
+            uploadImage: true,
+            imageAccept: ["image/png", "image/jpeg"],
+            imageUploadFunction: imageUploadFunction,
+          }}
+          onChange={(e) => handleTextChange("content", e)}
+          name="content"
+          value={postData.content}
+        />
         <Row justify="center">
-          <Col span={24}>
-            <Input
-              placeholder="Title"
-              bordered={false}
-              style={{ fontSize: "3em", marginBottom: 12 }}
-              name="title"
-              value={postData.title}
-              onChange={(e) => handleTextChange("title", e.target.value)}
-            />
-            <PostListItemEdit
-              postData={postData}
-              handleTextChange={handleTextChange}
-            />
-            <SimpleMDE
-              options={{
-                uploadImage: true,
-                imageAccept: ["image/png", "image/jpeg"],
-                imageUploadFunction: imageUploadFunction,
-              }}
-              onChange={(e) => handleTextChange("content", e)}
-              name="content"
-              value={postData.content}
-            />
-            <Row justify="center">
-              <Col span={4}>
-                <Space>
-                  <Button onClick={cancelPost}>Cancel</Button>
-                  {postID ? (
-                    <>
-                      {!postData.isPublish && (
-                        <Button
-                          type="primary"
-                          onClick={(e) => updatePost(false)}
-                          danger
-                        >
-                          Save draft
-                        </Button>
-                      )}
-                      <Button type="primary" onClick={(e) => updatePost(true)}>
-                        Publish
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      <Button
-                        type="primary"
-                        onClick={(e) => createPost(false)}
-                        danger
-                      >
-                        Save draft
-                      </Button>
-                      <Button type="primary" onClick={(e) => createPost(true)}>
-                        Publish
-                      </Button>
-                    </>
+          <Col span={4}>
+            <Space>
+              <Button onClick={cancelPost}>Cancel</Button>
+              {postID ? (
+                <>
+                  {!postData.isPublish && (
+                    <Button
+                      type="primary"
+                      onClick={(e) => updatePost(false, true)}
+                      danger
+                    >
+                      Save draft
+                    </Button>
                   )}
-                </Space>
-              </Col>
-            </Row>
+                  <Button
+                    type="primary"
+                    onClick={(e) => updatePost(true, false)}
+                  >
+                    Publish
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    type="primary"
+                    onClick={(e) => createPost(false, true)}
+                    danger
+                  >
+                    Save draft
+                  </Button>
+                  <Button
+                    type="primary"
+                    onClick={(e) => createPost(true, false)}
+                  >
+                    Publish
+                  </Button>
+                </>
+              )}
+            </Space>
           </Col>
         </Row>
+      </Col>
+    </Row>
   );
 }
 export default NewPost;

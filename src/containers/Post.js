@@ -19,7 +19,7 @@ import MarkdownPreview from "@uiw/react-markdown-preview";
 function Post() {
   const [post, updatePost] = useState({});
   const { id } = useParams();
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
 
   useEffect(() => {
     fetchPost();
@@ -56,7 +56,7 @@ function Post() {
         <Row justify="center">
           <Col span={24}>
             <Space>
-              <h1 style={{ fontSize: "2em" }}>{post.title}</h1>
+              <h1 style={{ fontSize: "3em" }}>{post.title}</h1>
               {user && user.userID === post.userID && (
                 <>
                   {post.isPublish ? (

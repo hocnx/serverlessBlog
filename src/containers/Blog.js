@@ -9,7 +9,7 @@ import {UserContext} from '../context/UserContext'
 function Blog() {
   const { userID } = useParams();
   const [listData, setListData] = useState([]);
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
 
   console.log("blog: ", userID);
   console.log("login userID: ", user.userID);
