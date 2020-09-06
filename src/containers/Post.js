@@ -56,7 +56,7 @@ function Post() {
         <Row justify="center">
           <Col span={24}>
             <Space>
-              <h1>{post.title}</h1>
+              <h1 style={{ fontSize: "2em" }}>{post.title}</h1>
               {user && user.userID === post.userID && (
                 <>
                   {post.isPublish ? (
