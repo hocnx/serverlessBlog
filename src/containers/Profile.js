@@ -25,7 +25,7 @@ const Profile = () => {
     });
   }, []);
 
-  return authState === AuthState.SignedIn && user ? (
+  return authState === AuthState.SignedIn && user.username ? (
     <>
       <Row justify="center">
         <Col span={8}>
